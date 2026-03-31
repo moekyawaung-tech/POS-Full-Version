@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>POS Full System | Mini Market & Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Myanmar:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-wrap">
+      <div class="brand">
+        <div class="logo">🛒</div>
+        <div>
+          <h1 data-en="POS Full System" data-mm="POS စနစ် အပြည့်အစုံ">POS Full System</h1>
+          <p data-en="Mini Market & Shop Management" data-mm="မီနီမားကတ်နှင့် စတိုးစီမံခန့်ခွဲမှု">
+            Mini Market & Shop Management
+          </p>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <select id="currencySelect" class="select-box">
+          <option value="MMK">MMK</option>
+          <option value="BAHT">Baht</option>
+        </select>
+        <button id="langToggle" class="lang-btn">မြန်မာ</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="badge" data-en="Retail POS Application" data-mm="Retail POS Application">Retail POS Application</span>
+        <h2 data-en="Smart POS for Mini Markets and Shops" data-mm="မီနီမားကတ်နှင့် စတိုးဆိုင်များအတွက် Smart POS">
+          Smart POS for Mini Markets and Shops
+        </h2>
+        <p data-en="A full POS system with bilingual support, product search, add to cart, receipt print, daily summary, and colorful store theme."
+           data-mm="မြန်မာ / English language support, product search, add to cart, receipt print, daily summary နှင့် colorful store theme ပါဝင်သော POS system အပြည့်အစုံ ဖြစ်ပါသည်။">
+          A full POS system with bilingual support, product search, add to cart, receipt print, daily summary, and colorful store theme.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#products" class="btn primary" data-en="Start Sale" data-mm="အရောင်းစတင်ရန်">Start Sale</a>
+          <a href="#receiptSection" class="btn secondary" data-en="Go to Receipt" data-mm="ဘောင်ချာသို့သွားရန်">Go to Receipt</a>
+        </div>
+      </div>
+
+      <div class="summary-panel">
+        <h3 data-en="Today Dashboard" data-mm="ယနေ့ Dashboard">Today Dashboard</h3>
+        <div class="summary-cards">
+          <div class="summary-card green">
+            <p data-en="Sales Total" data-mm="စုစုပေါင်း အရောင်း">Sales Total</p>
+            <h4 id="dashboardSales">MMK 0</h4>
+          </div>
+          <div class="summary-card red">
+            <p data-en="Return Total" data-mm="ပြန်အပ် စုစုပေါင်း">Return Total</p>
+            <h4 id="dashboardReturns">MMK 0</h4>
+          </div>
+          <div class="summary-card blue">
+            <p data-en="Net Total" data-mm="နောက်ဆုံး စုစုပေါင်း">Net Total</p>
+            <h4 id="dashboardNet">MMK 0</h4>
+          </div>
+        </div>
+
+        <div class="auto-summary">
+          <h4 data-en="Auto Plus/Minus Summary" data-mm="Auto အပေါင်းအနုတ် စာရင်းချုပ်">Auto Plus/Minus Summary</h4>
+          <ul>
+            <li><span data-en="Sold Items" data-mm="ရောင်းပြီးပစ္စည်း">Sold Items</span>: <strong id="soldItems">0</strong></li>
+            <li><span data-en="Return Items" data-mm="ပြန်အပ်ပစ္စည်း">Return Items</span>: <strong id="returnItems">0</strong></li>
+            <li><span data-en="Net Quantity" data-mm="နောက်ဆုံး အရေအတွက်">Net Quantity</span>: <strong id="netItems">0</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="section" id="products">
+    <div class="container pos-layout">
+      <section class="left-panel">
+        <div class="panel-header">
+          <h2 data-en="Products" data-mm="ကုန်ပစ္စည်းများ">Products</h2>
+          <p data-en="Search products and add items to cart" data-mm="ကုန်ပစ္စည်းရှာပြီး cart ထဲသို့ထည့်နိုင်ပါသည်">
+            Search products and add items to cart
+          </p>
+        </div>
+
+        <div class="search-row">
+          <input type="text" id="searchInput" class="search-input" placeholder="Search goods / ကုန်ပစ္စည်းရှာရန်..." />
+          <button class="btn camera-btn" id="cameraBtn">📷 Camera</button>
+        </div>
+
+        <div id="cameraBox" class="camera-box hidden">
+          <h3 data-en="Camera Scan UI" data-mm="Camera Scan UI">Camera Scan UI</h3>
+          <p data-en="Barcode scanner or camera API can be connected here."
+             data-mm="ဒီနေရာတွင် barcode scanner သို့မဟုတ် camera API ချိတ်ဆက်နိုင်ပါသည်။">
+            Barcode scanner or camera API can be connected here.
+          </p>
+          <div class="camera-placeholder">📷</div>
+        </div>
+
+        <div class="product-grid" id="productGrid"></div>
+      </section>
+
+      <aside class="right-panel">
+        <div class="cart-panel">
+          <div class="panel-header">
+            <h2 data-en="Shopping Cart" data-mm="အရောင်း Cart">Shopping Cart</h2>
+            <p data-en="Selected products for checkout" data-mm="ငွေချေမည့် ပစ္စည်းများ">Selected products for checkout</p>
+          </div>
+
+          <div id="cartList" class="cart-list"></div>
+
+          <div class="cart-summary">
+            <div><span data-en="Subtotal" data-mm="စုစုပေါင်း">Subtotal</span><strong id="subtotal">MMK 0</strong></div>
+            <div><span data-en="Tax (5%)" data-mm="အခွန် (5%)">Tax (5%)</span><strong id="tax">MMK 0</strong></div>
+            <div class="total-row"><span data-en="Total" data-mm="နောက်ဆုံးစုစုပေါင်း">Total</span><strong id="total">MMK 0</strong></div>
+          </div>
+
+          <div class="checkout-actions">
+            <button class="btn secondary" id="clearCartBtn" data-en="Clear Cart" data-mm="Cart ဖျက်ရန်">Clear Cart</button>
+            <button class="btn primary" id="checkoutBtn" data-en="Checkout" data-mm="ငွေချေရန်">Checkout</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <section class="section alt" id="receiptSection">
+    <div class="container">
+      <div class="panel-header center">
+        <h2 data-en="Receipt / Invoice" data-mm="ဘောင်ချာ / Invoice">Receipt / Invoice</h2>
+        <p data-en="Printable sale receipt" data-mm="Print ထုတ်နိုင်သော အရောင်းဘောင်ချာ">Printable sale receipt</p>
+      </div>
+
+      <div class="receipt-card" id="receiptCard">
+        <div class="receipt-header">
+          <h3>Mini Market POS</h3>
+          <p data-en="Thank you for shopping!" data-mm="ဝယ်ယူအားပေးမှုအတွက် ကျေးဇူးတင်ပါသည်။">Thank you for shopping!</p>
+          <small id="receiptDate"></small>
+        </div>
+
+        <div id="receiptItems" class="receipt-items"></div>
+
+        <div class="receipt-totals">
+          <div><span data-en="Subtotal" data-mm="စုစုပေါင်း">Subtotal</span><strong id="receiptSubtotal">MMK 0</strong></div>
+          <div><span data-en="Tax" data-mm="အခွန်">Tax</span><strong id="receiptTax">MMK 0</strong></div>
+          <div class="final-total"><span data-en="Total" data-mm="နောက်ဆုံးစုစုပေါင်း">Total</span><strong id="receiptTotal">MMK 0</strong></div>
+        </div>
+
+        <div class="receipt-actions">
+          <button class="btn primary" id="printBtn" data-en="Print Receipt" data-mm="ဘောင်ချာ Print ထုတ်ရန်">Print Receipt</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p data-en="© 2025 Moe Kyaw Aung | POS Full System"
+         data-mm="© 2025 Moe Kyaw Aung | POS စနစ် အပြည့်အစုံ">
+        © 2025 Moe Kyaw Aung | POS Full System
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
